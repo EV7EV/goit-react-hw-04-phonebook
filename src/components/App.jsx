@@ -31,11 +31,16 @@ export const App = () => {
     }
 
     const newContact = { id: nanoid(), name, number };
-    setContacts([...contacts, newContact]);
+
+    setContacts(prevState => {
+      return [...prevState, newContact];
+    });
   };
 
   const deleteContact = id => {
-    setContacts(contacts.filter(contact => contact.id !== id));
+    setContacts(prevState => {
+      return prevState.filter(contact => contact.id !== id);
+    });
   };
 
   const changeHandleFilter = e => {
